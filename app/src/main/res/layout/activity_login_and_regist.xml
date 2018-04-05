@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white">
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+         >
+
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:onClick="backClick"
+            android:src="@drawable/btn_back" />
+
+        <TextView
+            android:id="@+id/broswer_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="用户登录"
+            style="@style/titleFontStyle"/>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/loginLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:padding="20dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:text="邮   箱：" />
+            <EditText
+                android:id="@+id/login_username"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textEmailAddress" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:text="密    码：" />
+
+            <EditText
+                android:id="@+id/login_pass"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPassword" />
+
+
+        </LinearLayout>
+        <TextView
+            android:text="用户名或密码错误"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/Toast_pass1"
+            android:layout_weight="1"
+            android:textColor="@color/lightcoral"
+            android:visibility="gone"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="10dp">
+            <Button
+                android:id="@+id/login_login"
+                android:layout_width="wrap_content"
+                android:text="立即登录"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:background="@mipmap/btn_green"
+                android:layout_height="70dp" />
+
+            <Button
+                android:id="@+id/login_regist"
+                android:layout_width="wrap_content"
+                android:layout_height="70dp"
+                android:text="注     册"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:background="@mipmap/btn_orange" />
+        </LinearLayout>
+
+
+
+
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/registLayout"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:orientation="vertical"
+        android:padding="20dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:text="邮     箱：" />
+
+            <EditText
+                android:id="@+id/regist_email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.15"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="1">
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:text="用户名：" />
+
+            <EditText
+                android:id="@+id/regist_userName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:text="密    码：" />
+
+            <EditText
+                android:id="@+id/regist_pass"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:layout_weight="0.10"
+                android:inputType="textPassword" />
+
+            <TextView
+                android:text="字母数字组合"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView7"
+                android:layout_weight="1"
+                android:lines="1"
+                android:gravity="right|center_vertical"/>
+        </LinearLayout>
+
+
+        <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:text="再次输入" />
+
+            <EditText
+                android:id="@+id/regist_secondPass"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPassword" />
+
+            <TextView
+            android:text="输入密码不一致"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/Toast_pass2"
+            android:layout_weight="1"
+            android:gravity="right"
+            android:textColor="@color/hotpink"
+            android:visibility="gone"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:text="邮箱已被注册或用户名被占用"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/toast_email"
+                android:layout_weight="1"
+                android:textColor="@color/hotpink"
+                android:visibility="gone"/>
+
+            <Button
+                android:id="@+id/regist_regist"
+                android:layout_width="wrap_content"
+                android:layout_height="70dp"
+                android:text="注     册"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:background="@mipmap/btn_green" />
+
+            <Button
+                android:id="@+id/regist_login"
+                android:layout_width="wrap_content"
+                android:layout_height="70dp"
+                android:text="立即登录"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:background="@mipmap/btn_orange" />
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</LinearLayout>

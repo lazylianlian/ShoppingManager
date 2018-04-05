@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">轻松购</string>
+    <string name="userword">我的美食宣言</string>
+    <string name="toast_userlike">快去收藏让你心动的美食吧！</string>
+    <string name="title3">个人中心</string>
+    <string name="username">用户名</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

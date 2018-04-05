@@ -1,0 +1,35 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+    <!--圆角图片-->
+    <declare-styleable name="RoundImageView">
+        <attr name="borderThickness" format="integer" />
+        <attr name="borderInsideColor" format="color" />
+        <attr name="borderOutsideColor" format="color" />
+    </declare-styleable>
+    <style name="titleFontStyle">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">#000000</item>
+        <item name="android:gravity">center</item>
+        <item name="android:padding">15dp</item>
+    </style>
+    <style name = "cateListTextStyle">
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="myPopWindowAnim">
+        <item name="android:windowEnterAnimation">@anim/popwindow_show_anim</item>
+        <item name="android:windowExitAnimation">@anim/popwindow_hidden_anim</item>
+
+    </style>
+    <style name="mySesrchPopAnim">
+        <item name="android:windowEnterAnimation">@anim/search_pop_show_anim</item>
+        <item name="android:windowExitAnimation">@anim/search_pop_hidden_anim</item>
+
+    </style>
+</resources>

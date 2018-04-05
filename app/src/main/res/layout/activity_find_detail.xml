@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_find_detail"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    tools:context="com.manager.shopping.activitys.FindDetailActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        >
+
+        <Button
+            android:layout_width="15dp"
+            android:layout_height="20dp"
+            android:background="@drawable/btn_back"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:onClick="backClick" />
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="美食研究报告"
+            style="@style/titleFontStyle" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:background="@color/white">
+        <TextView
+            android:text="未登录"
+            android:gravity="center_vertical|right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/fd_userName"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:textSize="20sp"
+            android:textColor="@color/lightcoral"
+            android:layout_alignParentTop="true" />
+
+        <TextView
+            android:text="美食研究主题"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/fd_title"
+            android:textSize="15sp"
+            android:textColor="@color/black"
+            android:layout_below="@+id/find_userName"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="5dp"/>
+
+        <ImageView
+            android:layout_width="100dp"
+            app:srcCompat="@mipmap/grid_chuangyi"
+            android:id="@+id/fd_img"
+            android:scaleType="centerCrop"
+            android:layout_height="120dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+
+        <TextView
+            android:text="美食研究正文"
+            android:padding="10dp"
+            android:lines="5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/fd_content"
+            android:layout_below="@+id/fd_title"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_toLeftOf="@+id/fd_img"
+            android:layout_toStartOf="@+id/fd_img"
+            android:layout_alignBottom="@+id/fd_img" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <TextView
+            android:text="评论列表"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView9"
+            android:textColor="#000000"
+            android:textSize="18sp"
+            android:padding="10dp"/>
+
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/comentList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:scrollIndicators="none"/>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+
+        <EditText
+        android:id="@+id/fd_coment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="我想说..."
+        android:layout_weight="1"/>
+
+        <TextView
+        android:id="@+id/doComent"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:text="确定"
+            android:gravity="center"
+        android:textColor="@color/black"
+        android:textSize="18sp"/>
+
+    </LinearLayout>
+</LinearLayout>

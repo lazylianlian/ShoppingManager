@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimary">#303F9F</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
-
     <color name="white">#ffffff</color> <!-- 白色 -->
+    <color name="homebg">#f0f0f0</color> <!-- 白色 -->
+    <color name="greydark3">#eeeeee</color> <!-- 白色 -->
+    <color name="greydark6">#888888</color> <!-- 白色 -->
+    <color name="greydark8">#888888</color> <!-- 白色 -->
     <color name="ivory">#fffff0</color> <!-- 象牙色 -->
     <color name="lightyellow">#ffffe0</color> <!-- 亮黄色 -->
     <color name="yellow">#ffff00</color> <!-- 黄色 -->
@@ -149,6 +152,6 @@
     <color name="mediumblue">#0000cd</color> <!-- 中兰色 -->
     <color name="darkblue">#00008b</color> <!-- 暗蓝色 -->
     <color name="navy">#000080</color> <!-- 海军色 -->
-    <color name="black">#000000</color> <!-- 黑色 -->
+    <color name="black">#333333</color> <!-- 黑色 -->
 
 </resources>

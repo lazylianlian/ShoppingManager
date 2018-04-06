@@ -2,36 +2,75 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.manager.shopping.fragments.shopFragment"
+    android:background="@color/white"
     android:orientation="vertical"
-    android:background="@color/white">
+    tools:context="com.manager.shopping.fragments.ShopFragment">
 
     <RelativeLayout
         android:id="@+id/titleLayout"
         android:layout_width="match_parent"
-        android:layout_height="44dp">
+        android:layout_height="60dp">
+
         <TextView
+            style="@style/titleFontStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="美食研究生"
-            style="@style/titleFontStyle"/>
+            android:text="轻松购" />
 
     </RelativeLayout>
 
     <LinearLayout
-        android:orientation="horizontal"
+        android:id="@+id/searchLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="18dp">
+        android:layout_marginLeft="18dp"
+        android:layout_marginRight="28dp"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingBottom="18dp">
+
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@mipmap/shop_search"/>
-        <EditText
+            android:src="@mipmap/shop_search" />
+
+        <TextView
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:background="@color/colorPrimary"/>
+            android:layout_height="35dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/shape_grey_corner"
+            android:focusable="false"
+            android:gravity="center_vertical"
+            android:text="@string/shop_search_hint"
+            android:paddingLeft="10dp"
+            android:textColorHint="@color/greydark8" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingBottom="18dp"
+        android:paddingLeft="28dp"
+        android:paddingTop="10dp">
+
+        <View
+            android:layout_width="3dp"
+            android:layout_height="15dp"
+            android:background="#FFDE56" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="9dp"
+            android:text="热门分类"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
     </LinearLayout>
 
     <GridView
@@ -39,9 +78,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:numColumns="2"
+        android:overScrollMode="never"
+        android:paddingLeft="28dp"
+        android:paddingRight="28dp"
         android:scrollIndicators="none"
-        >
-    </GridView>
+        android:scrollbars="none"></GridView>
 
 
 </LinearLayout>

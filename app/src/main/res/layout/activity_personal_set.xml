@@ -8,133 +8,142 @@
     tools:context="com.manager.shopping.activitys.PersonalSetActivity">
 
 
-
     <RelativeLayout
         android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:layout_alignParentTop="true"
+        android:layout_height="60dp"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
-        <Button
-            android:layout_width="15dp"
-            android:layout_height="20dp"
-            android:background="@drawable/btn_back"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:background="@color/white">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
-            android:onClick="backClick"/>
+            android:onClick="backClick"
+            android:padding="18dp"
+            android:src="@mipmap/toolbar_icon_back"
+            android:tint="@color/black" />
+
         <TextView
             android:id="@+id/tv_title"
+            style="@style/titleFontStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="设置"
-            style="@style/titleFontStyle"/>
+            android:text="设置" />
 
-        <Button
-            android:background="@mipmap/person_done"
-            android:layout_height="25dp"
+        <ImageView
+            android:id="@+id/setBtn"
             android:layout_width="25dp"
-            android:layout_alignBaseline="@+id/button3"
-            android:layout_alignBottom="@+id/button3"
-            android:layout_alignParentRight="true"
+            android:layout_height="25dp"
             android:layout_alignParentEnd="true"
-            android:id="@+id/setBtn" />
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="18dp"
+            android:src="@mipmap/person_done"
+            android:tint="@color/black"/>
     </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/relativeLayout"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
+        android:layout_below="@+id/relativeLayout"
         android:padding="20dp">
+
         <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:inputType="textPersonName"
-            android:text="Name"
-            android:ems="10"
             android:id="@+id/set_name"
-            android:layout_below="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
             android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/textView"
+            android:ems="10"
+            android:paddingLeft="10dp"
+            android:inputType="textPersonName"
+            android:text="Name" />
 
         <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:inputType="textPersonName"
-            android:text="Name"
-            android:ems="10"
-            android:layout_below="@+id/textView8"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
             android:id="@+id/set_word"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
-
-        <TextView
-            android:text="用户名："
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/textView"
+            android:layout_alignParentEnd="true"
             android:layout_alignParentLeft="true"
-            android:textColor="@color/black"
-            android:textSize="18sp"
-            android:layout_marginBottom="5dp"/>
+            android:layout_alignParentRight="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/textView8"
+            android:ems="10"
+            android:paddingLeft="10dp"
+            android:inputType="textPersonName"
+            android:text="Name" />
 
         <TextView
-            android:text="邮箱："
+            android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginBottom="5dp"
+            android:text="用户名："
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+
+        <TextView
             android:id="@+id/textView10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_below="@+id/set_name"
+            android:layout_marginBottom="5dp"
+            android:text="邮箱："
             android:textColor="@color/black"
-            android:textSize="18sp"
-            android:layout_marginBottom="5dp"/>
+            android:textSize="18sp" />
 
         <TextView
-            android:text="我的美食宣言："
+            android:id="@+id/textView8"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/textView8"
-            android:textColor="@color/black"
-            android:textSize="18sp"
-            android:layout_below="@+id/set_email"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_marginBottom="5dp"/>
+            android:layout_below="@+id/set_email"
+            android:layout_marginBottom="5dp"
+            android:text="我的购物宣言："
+            android:textColor="@color/black"
+            android:textSize="18sp" />
 
         <TextView
-            android:layout_width="match_parent"
-            android:inputType="textPersonName"
-            android:text="Name"
-            android:ems="10"
-            android:gravity="center_vertical"
-            android:padding="10dp"
-            android:textColor="@color/black"
-            android:textSize="18sp"
             android:id="@+id/set_email"
-            android:layout_below="@+id/textView10"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_height="40dp" />
+            android:layout_below="@+id/textView10"
+            android:ems="10"
+            android:gravity="center_vertical"
+            android:inputType="textPersonName"
+            android:padding="10dp"
+            android:text="Name"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
 
-        <Button
-            android:text="退出当前账号"
-            android:layout_width="wrap_content"
-            android:layout_height="70dp"
+        <TextView
             android:id="@+id/clearCurrentBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="12dp"
             android:layout_below="@+id/set_word"
-            android:layout_marginTop="72dp"
             android:layout_centerHorizontal="true"
-            android:background="@mipmap/btn_orange" />
+            android:layout_marginTop="72dp"
+            android:background="@drawable/shape_yellow_corner"
+            android:text="退出当前账号"
+            android:gravity="center"
+            android:textColor="@color/black"/>
     </RelativeLayout>
 
 </RelativeLayout>

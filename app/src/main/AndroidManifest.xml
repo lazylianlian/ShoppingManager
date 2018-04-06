@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.manager.shopping">
+
     <!-- 允许联网 -->
     <!-- 保持CPU 运转，屏幕和键盘灯有可能是关闭的,用于文件上传和下载 -->
     <uses-permission android:name="android.permission.WAKE_LOCK" />
@@ -69,7 +70,9 @@
         <activity android:name=".activitys.LoginAndRegistActivity" />
         <activity android:name=".activitys.FindAddActivity" />
         <activity android:name=".activitys.FindDetailActivity" />
-        <activity android:name=".activitys.PersonalSetActivity"></activity>
+        <activity android:name=".activitys.PersonalSetActivity" />
+        <activity android:name=".activitys.ShopListActivity" />
+        <activity android:name=".activitys.ShopSearchActivity"></activity>
     </application>
 
 </manifest>

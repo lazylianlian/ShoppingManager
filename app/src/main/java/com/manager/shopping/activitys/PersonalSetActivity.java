@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,7 +21,8 @@ import cn.bmob.v3.listener.UpdateListener;
 public class PersonalSetActivity extends AppCompatActivity {
     EditText set_name,set_word;
     TextView set_email;
-    Button setBtn,clearUserBtn;
+    TextView clearUserBtn;
+    ImageView setBtn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,8 +35,8 @@ public class PersonalSetActivity extends AppCompatActivity {
         set_name = (EditText) findViewById(R.id.set_name);
         set_email = (TextView) findViewById(R.id.set_email);
         set_word = (EditText) findViewById(R.id.set_word);
-        setBtn = (Button) findViewById(R.id.setBtn);
-        clearUserBtn = (Button) findViewById(R.id.clearCurrentBtn);
+        setBtn = (ImageView) findViewById(R.id.setBtn);
+        clearUserBtn = (TextView) findViewById(R.id.clearCurrentBtn);
         UserInfo userInfo = UserInfo.getCurrentUser();
         set_name.setText(userInfo.getUsername());
         set_word.setText(userInfo.getUserWord());

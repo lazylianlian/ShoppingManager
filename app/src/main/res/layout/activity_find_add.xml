@@ -3,27 +3,31 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/white">
-    <RelativeLayout 
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:background="@color/white">
-        <Button 
-            android:layout_width="15dp"
-            android:layout_height="20dp"
-            android:background="@drawable/btn_back"
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
-            android:onClick="backClick"/>
-        <TextView 
+            android:onClick="backClick"
+            android:padding="18dp"
+            android:src="@mipmap/toolbar_icon_back"
+            android:tint="@color/black" />
+
+        <TextView
             android:id="@+id/tv_title"
+            style="@style/titleFontStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="美食新发现"
-            style="@style/titleFontStyle"/>
+            android:text="好物分享" />
 
     </RelativeLayout>
 
@@ -32,60 +36,62 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="20dp"
-        >
+        android:padding="18dp">
 
-            <EditText
-                android:id="@+id/post_title"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:hint="标题"
-                android:layout_marginBottom="10dp"/>
-
-            <EditText
-                android:id="@+id/post_content"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:layout_weight="1"
-                android:hint="我的美食研究"
-                android:layout_marginBottom="10dp"/>
-
-        <LinearLayout
-            android:orientation="horizontal"
+        <EditText
+            android:id="@+id/post_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
             android:layout_weight="1"
+            android:hint="标题" />
+
+        <EditText
+            android:id="@+id/post_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:layout_weight="1"
+            android:ems="10"
+            android:hint="我的分享" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="5dp"
             android:gravity="center_vertical"
-            android:layout_marginBottom="10dp">
+            android:orientation="horizontal">
 
             <ImageView
-                app:srcCompat="@mipmap/find_img"
                 android:id="@+id/post_img"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
                 android:scaleType="fitXY"
-                android:layout_height="150dp"
-                android:layout_width="120dp" />
+                app:srcCompat="@mipmap/find_img" />
 
             <TextView
                 android:id="@+id/post_img_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="添加图片"
+                android:layout_marginLeft="20dp"
                 android:gravity="center_vertical"
-                android:layout_marginLeft="10dp"/>
+                android:text="添加图片" />
 
         </LinearLayout>
 
-        <Button
-                android:id="@+id/postBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="70dp"
-                android:text="立即发表"
-                android:layout_weight="1"
-            android:background="@mipmap/btn_green"
+        <TextView
+            android:id="@+id/postBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="20dp"/>
+            android:layout_marginTop="40dp"
+            android:padding="12dp"
+            android:layout_weight="1"
+            android:background="@drawable/shape_yellow_corner"
+            android:text="立即发表"
+            android:textColor="@color/black"
+            android:gravity="center"/>
 
 
     </LinearLayout>

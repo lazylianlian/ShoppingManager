@@ -1,124 +1,146 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:app="http://schemas.android.com/apk/res-auto"
-	android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-	android:background="@color/white">
+    android:background="@color/white"
+    android:orientation="vertical">
 
-	<RelativeLayout
-		android:id="@+id/firstlayout"
+    <RelativeLayout
+        android:id="@+id/firstlayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="60dp">
+
         <TextView
-		    style="@style/titleFontStyle"
-		    android:layout_width="wrap_content"
-		    android:layout_height="wrap_content"
-		    android:text="@string/title3"
-		    android:layout_centerInParent="true"/>
+            style="@style/titleFontStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/title3" />
 
-		<ImageView
-			android:layout_width="30dp"
-			android:layout_height="30dp"
-			android:layout_marginRight="10dp"
-			android:id="@+id/personal_setting"
-			android:layout_centerVertical="true"
-			android:layout_alignParentRight="true"
-			android:layout_alignParentEnd="true"
-			android:background="@mipmap/person_set" />
+        <ImageView
+            android:id="@+id/personal_setting"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:background="@mipmap/shop_setting" />
 
-	</RelativeLayout>
+    </RelativeLayout>
 
-	<ScrollView
-		android:layout_width="match_parent"
-		android:layout_height="match_parent"
-		android:layout_alignParentStart="true"
-		android:layout_below="@+id/firstlayout">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/firstlayout">
 
-		<LinearLayout
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-			<RelativeLayout
-				android:layout_width="match_parent"
-				android:layout_height="match_parent"
-				android:layout_above="@+id/centerview"
-				android:layout_below="@+id/firstlayout"
-				android:background="#ffffff"
-				android:padding="10dp">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_above="@+id/centerview"
+                android:layout_below="@+id/firstlayout"
+                android:background="#ffffff"
+                android:padding="10dp">
 
 
-				<com.manager.shopping.widgets.RoundImageView
-					android:id="@+id/personal_img"
-					android:layout_width="100dp"
-					android:layout_height="100dp"
-					android:layout_alignParentTop="true"
-					android:layout_centerHorizontal="true"
-					android:layout_marginTop="5dp" />
+                <com.manager.shopping.widgets.RoundImageView
+                    android:id="@+id/personal_img"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="5dp" />
 
-				<TextView
-					android:id="@+id/person_name"
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:layout_below="@+id/personal_img"
-					android:layout_centerHorizontal="true"
-					android:text="@string/username"
-					android:textColor="@color/black"
-					android:textSize="15sp" />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/personal_img"
+                    android:layout_alignRight="@+id/personal_img"
+                    android:src="@mipmap/shop_camera"/>
 
-				<TextView
-					android:id="@+id/person_word"
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:layout_below="@+id/person_name"
-					android:layout_centerHorizontal="true"
-					android:gravity="center"
-					android:text="@string/userword"
-					android:textColor="@color/black"
-					android:textSize="15sp" />
+                <TextView
+                    android:id="@+id/person_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/personal_img"
+                    android:layout_centerHorizontal="true"
+                    android:text="@string/username"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
 
-			</RelativeLayout>
+                <TextView
+                    android:id="@+id/person_word"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/person_name"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center"
+                    android:text="@string/userword"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
 
-			<View
-				android:id="@+id/centerview"
-				android:layout_width="match_parent"
-				android:layout_height="1dp"
-				android:layout_centerInParent="true">
+            </RelativeLayout>
 
-			</View>
+            <View
+                android:id="@+id/centerview"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_centerInParent="true">
 
-			<TextView
-				android:id="@+id/toast_collec"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:layout_below="@+id/centerview"
-				android:gravity="center"
-				android:padding="10dp"
-				android:text="@string/toast_userlike"
-				android:textColor="@color/lightcoral"
-				android:textSize="18sp" />
+            </View>
 
-			<TextView
-				android:id="@+id/collectTitle"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:layout_below="@+id/toast_collec"
-				android:drawableLeft="@mipmap/cate_list_like_click"
-				android:padding="10dp"
-				android:text="  我的收藏"
-				android:textSize="15sp" />
+            <TextView
+                android:id="@+id/toast_collec"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/centerview"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="@string/toast_userlike"
+                android:textColor="@color/lightcoral"
+                android:textSize="18sp" />
 
-			<ListView
-				android:id="@+id/personListView"
-				android:layout_width="match_parent"
-				android:layout_height="match_parent"
-				android:layout_below="@+id/collectTitle"
-				android:divider="@null"
-				android:scrollIndicators="none"
-				android:scrollbarStyle="@null"></ListView>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/toast_collec"
+                android:gravity="center_vertical"
+                android:paddingLeft="18dp">
 
-		</LinearLayout>
-	</ScrollView>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/shop_like" />
+
+                <TextView
+                    android:id="@+id/collectTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="10dp"
+                    android:paddingTop="10dp"
+                    android:text="  我的收藏"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
+
+            <ListView
+                android:id="@+id/personListView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/collectTitle"
+                android:divider="@null"
+                android:paddingLeft="18dp"
+                android:scrollIndicators="none"
+                android:scrollbarStyle="@null"></ListView>
+
+        </LinearLayout>
+    </ScrollView>
 
 </RelativeLayout>

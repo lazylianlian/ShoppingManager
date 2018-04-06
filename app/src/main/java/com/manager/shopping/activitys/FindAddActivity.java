@@ -36,7 +36,7 @@ public class FindAddActivity extends AppCompatActivity {
     EditText pTitle,pContent;
     TextView pImageText;
     ImageView pImage;
-    Button postBtn;
+    TextView postBtn;
     Post post = new Post();
     BmobFile imageFile = new BmobFile();
     @Override
@@ -51,7 +51,7 @@ public class FindAddActivity extends AppCompatActivity {
         pContent = (EditText) findViewById(R.id.post_content);
         pImageText = (TextView) findViewById(R.id.post_img_text);
         pImage = (ImageView) findViewById(R.id.post_img);
-        postBtn = (Button) findViewById(R.id.postBtn);
+        postBtn = (TextView) findViewById(R.id.postBtn);
         pImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

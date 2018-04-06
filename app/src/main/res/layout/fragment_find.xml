@@ -6,7 +6,7 @@
     android:background="@color/white">
     <RelativeLayout 
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="60dp">
         <TextView 
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -15,12 +15,12 @@
             style="@style/titleFontStyle"/>
         <Button
             android:id="@+id/find_addBtn"
-            android:layout_width="30dp"
+            android:layout_width="40dp"
             android:layout_centerVertical="true"
-            android:background="@mipmap/find_add"
+            android:background="@mipmap/shop_info"
             android:layout_alignParentRight="true"
             android:layout_marginRight="10dp"
-            android:layout_height="30dp" />
+            android:layout_height="40dp" />
     </RelativeLayout>
 
     <ListView

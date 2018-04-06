@@ -16,17 +16,18 @@
 
         <ImageView
             android:id="@+id/iv_cate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@mipmap/tab_cate" />
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@mipmap/home_banner_store_n" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="美食"
-            android:textColor="@color/black"/>
+            android:text="首页"
+            android:textColor="@color/black" />
     </LinearLayout>
 
     <LinearLayout
@@ -40,16 +41,43 @@
 
         <ImageView
             android:id="@+id/iv_find"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@mipmap/tab_find" />
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@mipmap/home_banner_discover_n" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
             android:layout_weight="1"
             android:gravity="center"
             android:text="发现"
+            android:textColor="@color/black" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/tv_barket"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:padding="5dp">
+
+        <ImageView
+            android:id="@+id/iv_barket"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@mipmap/tab_barket_select"
+            android:tint="@color/greydark6"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="购物车"
             android:textColor="@color/black" />
     </LinearLayout>
 
@@ -64,16 +92,17 @@
 
         <ImageView
             android:id="@+id/iv_person"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@mipmap/tab_person" />
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@mipmap/home_banner_mine_n" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="我"
+            android:text="我的"
             android:textColor="@color/black" />
     </LinearLayout>
     <!--<TextView-->

@@ -5,7 +5,7 @@
     android:orientation="vertical"
     android:gravity="center"
     android:background="@color/white"
-    android:padding="10dp">
+    android:padding="18dp">
 
     <TextView
         android:text="从手机相册选择"
@@ -16,7 +16,13 @@
         android:textColor="@color/black"
         android:textSize="18sp"
         android:padding="5dp"/>
-
+<View
+    android:layout_width="match_parent"
+    android:layout_height="1px"
+    android:background="@color/greydark3"
+    android:layout_marginTop="5dp"
+    android:layout_marginBottom="5dp"
+    />
     <TextView
         android:text="取消"
         android:layout_width="wrap_content"

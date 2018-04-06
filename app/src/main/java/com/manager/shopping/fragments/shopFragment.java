@@ -4,7 +4,6 @@ package com.manager.shopping.fragments;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -14,37 +13,29 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridView;
+import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.google.gson.Gson;
 import com.manager.shopping.R;
 import com.manager.shopping.activitys.CateListActivity;
+import com.manager.shopping.activitys.ShopListActivity;
+import com.manager.shopping.activitys.ShopSearchActivity;
 import com.manager.shopping.adapter.CateGridAdapter;
-import com.manager.shopping.bean.CateInfo;
-import com.manager.shopping.constants.ConstantUtils;
-
-import java.util.HashMap;
-import java.util.Map;
 
 
-public class shopFragment extends Fragment {
+public class ShopFragment extends Fragment {
     RelativeLayout titleLayout;
-    Button searchBtn;
+    LinearLayout searchLayout;
     private GridView gridView;
-    private int[] pics = {R.mipmap.grid_jiachangcai, R.mipmap.grid_kuaishou, R.mipmap.grid_chuangyi, R.mipmap.grid_sucai, R.mipmap.grid_liangcai, R.mipmap.grid_hongbei, R.mipmap.grid_mianshi, R.mipmap.grid_tang};
-    private String[] tags = {"家常菜","快手菜","创意菜","凉菜","素菜","烘焙","面食","汤"};
+    private int[] pics = {R.mipmap.shop_grid_clothes, R.mipmap.shop_grid_food, R.mipmap.shop_grid_phone,  R.mipmap.shop_grid_good};
+    private String[] tags = {"服饰美衣","美食甜品","电子产品","家具日用"};
     private CateGridAdapter adapter;
     RequestQueue queue;
-    PopupWindow popupWindow;
+//    PopupWindow popupWindow;
     View popView;
 
     @Override
@@ -52,15 +43,16 @@ public class shopFragment extends Fragment {
                              Bundle savedInstanceState) {
         // TODO Auto-generated method stub
         queue = Volley.newRequestQueue(getActivity());
-        View view = inflater.inflate(R.layout.fragment_cate, null);
+        View view = inflater.inflate(R.layout.fragment_shop, null);
         titleLayout = (RelativeLayout) view.findViewById(R.id.titleLayout);
-        searchBtn = (Button) view.findViewById(R.id.searchBtn);
+        searchLayout = (LinearLayout) view.findViewById(R.id.searchLayout);
         popView = LayoutInflater.from(getActivity()).inflate(R.layout.fragment_cate_search_pop,null);
-        popupWindow = new PopupWindow(popView, WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
-        searchBtn.setOnClickListener(new View.OnClickListener() {
+//        popupWindow = new PopupWindow(popView, WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
+        searchLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showPopWindow();
+//                showPopWindow();
+                getActivity().startActivity(new Intent(getActivity(), ShopSearchActivity.class));
             }
         });
         gridView = (GridView) view.findViewById(R.id.cateGridView);
@@ -72,7 +64,7 @@ public class shopFragment extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
                 String selected = tags[position];
-                Intent intent = new Intent(getActivity(), CateListActivity.class);
+                Intent intent = new Intent(getActivity(), ShopListActivity.class);
                 intent.putExtra("title", selected);
                 intent.putExtra("cid",position+1);
                 startActivity(intent);
@@ -119,45 +111,45 @@ public class shopFragment extends Fragment {
 //        queue.start();
     }
     private void showPopWindow() {
-
-
-        TextView doSearch = (TextView) popView.findViewById(R.id.doSearch);
-        final EditText et_search = (EditText) popView.findViewById(R.id.et_search);
-
-        if (!popupWindow.isShowing()) {
-
-            //在底部显示
-            popupWindow.showAsDropDown(titleLayout);
-            //popupWindow.showAtLocation(titleLayout, Gravity.BOTTOM, 0, 0);
-            //popupWindow.setAnimationStyle(R.style.mySesrchPopAnim);
-            popupWindow.setOutsideTouchable(true);
-            popupWindow.setTouchable(true);
-            popupWindow.setFocusable(true);
-            backgroundAlpha(0.5f);
-            popView.setOnTouchListener(new View.OnTouchListener() {
-                @Override
-                public boolean onTouch(View view, MotionEvent motionEvent) {
-                    if (popupWindow.isShowing()) {
-                        backgroundAlpha(1);
-                        popupWindow.dismiss();
-                    }
-                    return false;
-                }
-            });
-
-            doSearch.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    if (et_search.getText().toString().length()!=0){
-                        searchCateData(et_search.getText().toString().trim());
-
-                    }
-                }
-            });
-        } else {
-            backgroundAlpha(1);
-            popupWindow.dismiss();
-        }
+//
+//
+//        TextView doSearch = (TextView) popView.findViewById(R.id.doSearch);
+//        final EditText et_search = (EditText) popView.findViewById(R.id.et_search);
+//
+//        if (!popupWindow.isShowing()) {
+//
+//            //在底部显示
+//            popupWindow.showAsDropDown(titleLayout);
+//            //popupWindow.showAtLocation(titleLayout, Gravity.BOTTOM, 0, 0);
+//            //popupWindow.setAnimationStyle(R.style.mySesrchPopAnim);
+//            popupWindow.setOutsideTouchable(true);
+//            popupWindow.setTouchable(true);
+//            popupWindow.setFocusable(true);
+//            backgroundAlpha(0.5f);
+//            popView.setOnTouchListener(new View.OnTouchListener() {
+//                @Override
+//                public boolean onTouch(View view, MotionEvent motionEvent) {
+//                    if (popupWindow.isShowing()) {
+//                        backgroundAlpha(1);
+//                        popupWindow.dismiss();
+//                    }
+//                    return false;
+//                }
+//            });
+//
+//            doSearch.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View view) {
+//                    if (et_search.getText().toString().length()!=0){
+//                        searchCateData(et_search.getText().toString().trim());
+//
+//                    }
+//                }
+//            });
+//        } else {
+//            backgroundAlpha(1);
+//            popupWindow.dismiss();
+//        }
     }
     /*
      *   设置窗体背景颜色变化

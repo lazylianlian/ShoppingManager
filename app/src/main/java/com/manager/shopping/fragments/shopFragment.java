@@ -29,7 +29,7 @@ import com.manager.shopping.adapter.CateGridAdapter;
 
 public class ShopFragment extends Fragment {
     RelativeLayout titleLayout;
-    LinearLayout searchLayout;
+    View searchLayout;
     private GridView gridView;
     private int[] pics = {R.mipmap.shop_grid_clothes, R.mipmap.shop_grid_food, R.mipmap.shop_grid_phone,  R.mipmap.shop_grid_good};
     private String[] tags = {"服饰美衣","美食甜品","电子产品","家具日用"};
@@ -43,9 +43,9 @@ public class ShopFragment extends Fragment {
                              Bundle savedInstanceState) {
         // TODO Auto-generated method stub
         queue = Volley.newRequestQueue(getActivity());
-        View view = inflater.inflate(R.layout.fragment_shop, null);
+        View view = inflater.inflate(R.layout.fragment_shop,null);
         titleLayout = (RelativeLayout) view.findViewById(R.id.titleLayout);
-        searchLayout = (LinearLayout) view.findViewById(R.id.searchLayout);
+        searchLayout = view.findViewById(R.id.search_Layout);
         popView = LayoutInflater.from(getActivity()).inflate(R.layout.fragment_cate_search_pop,null);
 //        popupWindow = new PopupWindow(popView, WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
         searchLayout.setOnClickListener(new View.OnClickListener() {

@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/homebg"
     tools:context="com.manager.shopping.fragments.BaketFragment">
 
     <RelativeLayout
@@ -18,5 +19,12 @@
             android:text="购物车"
             style="@style/titleFontStyle"/>
     </RelativeLayout>
-
+    <ListView
+        android:id="@+id/listView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:divider="@color/greydark3"
+        android:dividerHeight="9dp">
+    </ListView>
 </LinearLayout>

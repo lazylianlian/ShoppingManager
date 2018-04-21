@@ -72,7 +72,9 @@
         <activity android:name=".activitys.FindDetailActivity" />
         <activity android:name=".activitys.PersonalSetActivity" />
         <activity android:name=".activitys.ShopListActivity" />
-        <activity android:name=".activitys.ShopSearchActivity"></activity>
+        <activity android:name=".activitys.ShopSearchActivity" />
+        <activity android:name=".activitys.GoodDetailActivity" />
+        <activity android:name=".activitys.WebActivity"></activity>
     </application>
 
 </manifest>

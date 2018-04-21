@@ -15,4 +15,5 @@ public class ConstantUtils {
     public static final String JUHE_CATE_KEY = "ae6c8f3896c98c96cdcdde813e9030d2";
     //Bomb接口地址
     public static final String BOMB_URL = "";
+    public static final String GOOD_BASE_URL = "http://45.62.100.14:8080/upload_ssm/QueryGoods";
 }

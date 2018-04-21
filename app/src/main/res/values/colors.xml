@@ -4,7 +4,7 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="white">#ffffff</color> <!-- 白色 -->
-    <color name="homebg">#f0f0f0</color> <!-- 白色 -->
+    <color name="homebg">#efefef</color> <!-- 背景色 -->
     <color name="greydark3">#eeeeee</color> <!-- 白色 -->
     <color name="greydark6">#888888</color> <!-- 白色 -->
     <color name="greydark8">#888888</color> <!-- 白色 -->

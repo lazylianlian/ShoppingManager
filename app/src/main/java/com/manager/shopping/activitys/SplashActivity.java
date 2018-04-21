@@ -46,13 +46,13 @@ public class SplashActivity extends Activity {
 				}else {
 					UserInfo currentUser = BmobUser.getCurrentUser(UserInfo.class);
 					Intent intent;
-					if (currentUser==null){
-						intent = new Intent(SplashActivity.this,LoginAndRegistActivity.class);
-
-					}else {
+//					if (currentUser==null){
+//						intent = new Intent(SplashActivity.this,LoginAndRegistActivity.class);
+//
+//					}else {
 						intent = new Intent(SplashActivity.this, MainActivity.class);
 
-					}
+//					}
 					startActivity(intent);
 				}
 				finish();

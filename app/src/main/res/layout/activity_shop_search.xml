@@ -4,7 +4,7 @@
     android:id="@+id/activity_shop_search"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@color/homebg"
     android:orientation="vertical"
     tools:context="com.manager.shopping.activitys.ShopSearchActivity">
 
@@ -53,10 +53,11 @@
         android:id="@+id/searchLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="18dp"
-        android:layout_marginRight="18dp"
+        android:paddingLeft="18dp"
+        android:paddingRight="18dp"
         android:gravity="center_vertical"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:background="@color/white">
 
         <ImageView
             android:layout_width="wrap_content"

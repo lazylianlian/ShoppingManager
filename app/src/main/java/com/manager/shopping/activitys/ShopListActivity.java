@@ -107,7 +107,7 @@ public class ShopListActivity extends Activity implements View.OnClickListener, 
                 helper.setText(R.id.item_intro, item.getDescripe());
                 if ("1".equals(item.getSource())) {
                     helper.setText(R.id.item_from, "天猫商城");
-                } else if ("1".equals(item.getSource())) {
+                } else if ("2".equals(item.getSource())) {
                     helper.setText(R.id.item_from, "京东商城");
                 } else {
                     helper.setText(R.id.item_from, "苏宁易购");

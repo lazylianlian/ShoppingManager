@@ -16,4 +16,7 @@ public class ConstantUtils {
     //Bomb接口地址
     public static final String BOMB_URL = "";
     public static final String GOOD_BASE_URL = "http://45.62.100.14:8080/upload_ssm/QueryGoods";
+    public static final String GOOD_COLLECT_URL = "http://45.62.100.14:8080/upload_ssm/QueryCollect";
+    public static final String GOOD_ADD_COLLECT_URL = "http://45.62.100.14:8080/upload_ssm/AddCollect";
+    public static final String GOOD_DEL_COLLECT_URL = "http://45.62.100.14:8080/upload_ssm/DelCollect";
 }

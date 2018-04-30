@@ -38,23 +38,19 @@ import cn.bmob.v3.listener.UpdateListener;
  * A simple {@link Fragment} subclass.
  */
 public class BaketFragment extends Fragment {
-    LinearLayout hotBtn, countBtn, reviewBtn;
     ListView listView;
-    TextView titleTv;
     List<GoodInfo> goodInfoList = new ArrayList<>();
     CommonAdapter<GoodInfo> adapter;
     RequestQueue queue;
-    ImageLoader imageLoader;
-    DisplayImageOptions options;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         Bmob.initialize(getActivity(), "844b411fb7129f92886dad13103fde9f");
         View view = inflater.inflate(R.layout.fragment_baket, null);
+
         listView = (ListView) view.findViewById(R.id.listView);
         initAdapter();
-        listView.setAdapter(adapter);
         initData();
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -65,6 +61,12 @@ public class BaketFragment extends Fragment {
             }
         });
         return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        initData();
     }
 
     private void initData() {
@@ -92,10 +94,10 @@ public class BaketFragment extends Fragment {
                 if (e == null) {
                     goodInfoList = list;
                     adapter.notifyDataSetChanged();
+                    listView.setAdapter(adapter);
                 }
             }
         });
-
     }
 
     private void initAdapter() {

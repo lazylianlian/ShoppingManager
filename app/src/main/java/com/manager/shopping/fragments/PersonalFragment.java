@@ -1,12 +1,19 @@
 package com.manager.shopping.fragments;
 
+import android.Manifest;
 import android.content.ContentResolver;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -20,40 +27,55 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.manager.shopping.R;
-import com.manager.shopping.activitys.CateDetailActivity;
+import com.manager.shopping.activitys.GoodDetailActivity;
 import com.manager.shopping.activitys.PersonalSetActivity;
+import com.manager.shopping.activitys.ShopListActivity;
+import com.manager.shopping.adapter.RecyclerAdapter;
 import com.manager.shopping.bean.CateCollectionInfo;
+import com.manager.shopping.bean.GoodInfo;
 import com.manager.shopping.bean.UserInfo;
+import com.manager.shopping.constants.ConstantUtils;
+import com.manager.shopping.service.GoodInfoService;
 import com.manager.shopping.utils.CommonAdapter;
 import com.manager.shopping.utils.ImagePathUtils;
+import com.manager.shopping.utils.JsonUtil;
 import com.manager.shopping.utils.ViewHolder;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import cn.bmob.v3.Bmob;
-import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.datatype.BmobFile;
 import cn.bmob.v3.exception.BmobException;
-import cn.bmob.v3.listener.FindListener;
 import cn.bmob.v3.listener.UpdateListener;
 import cn.bmob.v3.listener.UploadFileListener;
 
 import static android.app.Activity.RESULT_OK;
 
 public class PersonalFragment extends Fragment {
-	ListView listView;
-	List<CateCollectionInfo> cList = new ArrayList<>();
-	CommonAdapter<CateCollectionInfo> adapter;
+	RecyclerView recyclerView;
+	List<GoodInfo> list = new ArrayList<>();
+	RecyclerAdapter adapter;
 	Button collectBtn;
 	ImageView settingBtn,personal_img;
 	TextView person_name,person_word,toast_collec;
@@ -62,12 +84,14 @@ public class PersonalFragment extends Fragment {
     View popView;
     ImageLoader imgLoader;
     DisplayImageOptions options;
+    RequestQueue queue;
 
     @Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
         Bmob.initialize(getActivity(),"844b411fb7129f92886dad13103fde9f");
+        queue = Volley.newRequestQueue(getActivity());
         imgLoader = ImageLoader.getInstance();
         options = new DisplayImageOptions.Builder()
                 .build();
@@ -76,8 +100,12 @@ public class PersonalFragment extends Fragment {
         popupWindow = new PopupWindow(popView, WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
         initPopWindow();
 
-        listView = (ListView) view.findViewById(R.id.personListView);
-		person_name = (TextView) view.findViewById(R.id.person_name);
+        recyclerView = (RecyclerView) view.findViewById(R.id.personListView);
+        recyclerView.setLayoutManager(new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL));
+        adapter = new RecyclerAdapter(getActivity(),list);
+        recyclerView.setAdapter(adapter);
+
+        person_name = (TextView) view.findViewById(R.id.person_name);
 		person_word = (TextView) view.findViewById(R.id.person_word);
         toast_collec = (TextView) view.findViewById(R.id.toast_collec);
         personal_img = (ImageView) view.findViewById(R.id.personal_img) ;
@@ -97,47 +125,41 @@ public class PersonalFragment extends Fragment {
 			}
 		});
         initData();
-		listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-			@Override
-			public void onItemClick(AdapterView<?> adapterView, View view, final int i, long l) {
-				collectBtn = (Button) view.findViewById(R.id.collectBtn);
-				collectBtn.setOnClickListener(new View.OnClickListener() {
-					@Override
-					public void onClick(View view) {
-                        deleteCollectInfo(cList.get(i));
-//						boolean result = manager.addCateCollecInfo(cList.get(i));
-//						if (!result){
-//							collectBtn.setBackgroundResource(R.mipmap.cate_list_like_normal);
-//							initData();
-//							Toast.makeText(getActivity(), "取消收藏", Toast.LENGTH_SHORT).show();
-//						}
-					}
-				});
-
-				Intent intent = new Intent(getActivity(),CateDetailActivity.class);
-                intent.putExtra("id",cList.get(i).getId());
-//				Bundle bundle = new Bundle();
-//				bundle.putSerializable("cateDetailInfo",cateDetailInfos.get(i));
-//				intent.putExtra("bundle",bundle);
-				startActivity(intent);
-
-			}
-		});
 		return view;
 	}
 
     private void initPopWindow() {
         photoChoose = (TextView) popView.findViewById(R.id.photoChoose);
         cancle = (TextView) popView.findViewById(R.id.cancle);
+
         photoChoose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //进入系统相册更换用户图片
-                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-                intent.setType("image/*");
-                intent.putExtra("crop", true);
-                intent.putExtra("return-data", true);
-                startActivityForResult(intent, 2);
+                //android6.0 动态申请权限
+                if (Build.VERSION.SDK_INT >= 23) {
+                    if(ContextCompat.checkSelfPermission(getActivity(),
+                            Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                            != PackageManager.PERMISSION_GRANTED){
+                        ActivityCompat.requestPermissions(getActivity(),
+                                new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                                2);
+                        return;
+                    }else{
+                        //进入系统相册更换用户图片
+                        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                        intent.setType("image/*");
+                        intent.putExtra("crop", true);
+                        intent.putExtra("return-data", true);
+                        startActivityForResult(intent, 2);
+                    }
+                } else {
+                    //进入系统相册更换用户图片
+                    Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                    intent.setType("image/*");
+                    intent.putExtra("crop", true);
+                    intent.putExtra("return-data", true);
+                    startActivityForResult(intent, 2);
+                }
             }
         });
         cancle.setOnClickListener(new View.OnClickListener() {
@@ -214,21 +236,6 @@ public class PersonalFragment extends Fragment {
         initData();
     }
 
-    /**s
-     * 取消收藏
-     * @param cateCollectionInfo 所选的美食
-     */
-    private void deleteCollectInfo(CateCollectionInfo cateCollectionInfo) {
-        cateCollectionInfo.delete(cateCollectionInfo.getObjectId(), new UpdateListener() {
-            @Override
-            public void done(BmobException e) {
-                if (e==null){
-                    collectBtn.setBackgroundResource(R.mipmap.cate_list_like_normal);
-                    initData();
-                }
-            }
-        });
-    }
 
     @Override
     public void onResume() {
@@ -279,68 +286,63 @@ public class PersonalFragment extends Fragment {
 
 
     private void initData() {
-        cList = new ArrayList<>();
-        BmobQuery<CateCollectionInfo> bmobQuery = new BmobQuery<>("CateCollectionInfo");
-        bmobQuery.addWhereEqualTo("userInfo", UserInfo.getCurrentUser());
-        bmobQuery.setCachePolicy(BmobQuery.CachePolicy.NETWORK_ELSE_CACHE);
-
-        bmobQuery.findObjects(new FindListener<CateCollectionInfo>() {
+        StringRequest request = new StringRequest(Request.Method.POST, ConstantUtils.GOOD_COLLECT_URL, new Response.Listener<String>() {
             @Override
-            public void done(List<CateCollectionInfo> list, BmobException e) {
-                if (e==null){
-                    if (list.size()==0){
-                        toast_collec.setVisibility(View.VISIBLE);
-                    }else{
-                        cList = list;
-                        adapter.setmDatas(cList);
-                        toast_collec.setVisibility(View.GONE);
+            public void onResponse(String s) {
+                Log.i("-----", s);
+                JSONObject obj = JsonUtil.getJSONObject(s);
+                JSONArray data = JsonUtil.getJSONArray(obj, "data");
+                if (data != null && data.length() != 0) {
+                    for (int i = 0; i < data.length(); i++) {
+                        JSONObject good = JsonUtil.getJSONObject(data, i);
+                        list.add(GoodInfoService.getGootInfoFromJson(good));
                     }
-                }else{
-                    Toast.makeText(getActivity(),e.getMessage(),Toast.LENGTH_SHORT).show();
                 }
+                adapter.notifyDataSetChanged();
             }
-        });
-        initAdapter();
-    }
-
-    private void initAdapter() {
-        adapter = new CommonAdapter<CateCollectionInfo>(getActivity(), cList, R.layout.activity_cate_list_item) {
+        }, new Response.ErrorListener() {
             @Override
-            public void convert(ViewHolder helper, CateCollectionInfo item) {
-                helper.setText(R.id.cateNameTv, item.getTitle());
-                helper.setImageByUrl(R.id.cate_img, item.getAlbums());
-                helper.setBtnImageResource(R.id.collectBtn,R.mipmap.cate_list_like_click);
+            public void onErrorResponse(VolleyError volleyError) {
+
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> maps = new HashMap<String, String>();
+                maps.put("userId", UserInfo.getCurrentUser() + "");
+                return maps;
             }
         };
-        listView.setAdapter(adapter);
-        setListViewHeightBasedOnChildren(listView);
+        queue.add(request);
+        queue.start();
     }
     /*
      *   代码计算ListView的高度
+     *   切换为recyclerView,注释掉了
      */
-    public void setListViewHeightBasedOnChildren(ListView listView) {
-        // 获取ListView对应的Adapter
-        CommonAdapter<CateCollectionInfo> listAdapter = (CommonAdapter<CateCollectionInfo>) listView.getAdapter();
-        if (listAdapter == null) {
-            return;
-        }
-
-        int totalHeight = 0;
-        for (int i = 0, len = listAdapter.getCount(); i < len; i++) {
-            // listAdapter.getCount()返回数据项的数目
-            View listItem = listAdapter.getView(i, null, listView);
-            // 计算子项View 的宽高
-            listItem.measure(0, 0);
-            // 统计所有子项的总高度
-            totalHeight += listItem.getMeasuredHeight();
-        }
-
-        ViewGroup.LayoutParams params = listView.getLayoutParams();
-        params.height = totalHeight + 400 + (listView.getDividerHeight() * (listAdapter.getCount() - 1));
-        // listView.getDividerHeight()获取子项间分隔符占用的高度
-        // params.height最后得到整个ListView完整显示需要的高度
-        listView.setLayoutParams(params);
-    }
+//    public void setListViewHeightBasedOnChildren(RecyclerView listView) {
+//        // 获取ListView对应的Adapter
+//        CommonAdapter<CateCollectionInfo> listAdapter = (CommonAdapter<CateCollectionInfo>) listView.getAdapter();
+//        if (listAdapter == null) {
+//            return;
+//        }
+//        recyclerView.get
+//        int totalHeight = 0;
+//        for (int i = 0, len = listAdapter.getCount(); i < len; i++) {
+//            // listAdapter.getCount()返回数据项的数目
+//            View listItem = listAdapter.getView(i, null, listView);
+//            // 计算子项View 的宽高
+//            listItem.measure(0, 0);
+//            // 统计所有子项的总高度
+//            totalHeight += listItem.getMeasuredHeight();
+//        }
+//
+//        ViewGroup.LayoutParams params = listView.getLayoutParams();
+//        params.height = totalHeight + 400 + (listView.getDividerHeight() * (listAdapter.getCount() - 1));
+//        // recyclerView.getDividerHeight()获取子项间分隔符占用的高度
+//        // params.height最后得到整个ListView完整显示需要的高度
+//        listView.setLayoutParams(params);
+//    }
 
     /*
      *   popWindow显示隐藏

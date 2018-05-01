@@ -73,13 +73,13 @@ import cn.bmob.v3.listener.UploadFileListener;
 import static android.app.Activity.RESULT_OK;
 
 public class PersonalFragment extends Fragment {
-	RecyclerView recyclerView;
-	List<GoodInfo> list = new ArrayList<>();
-	RecyclerAdapter adapter;
-	Button collectBtn;
-	ImageView settingBtn,personal_img;
-	TextView person_name,person_word,toast_collec;
-    TextView photoChoose,cancle;//popWindow中控件
+    RecyclerView recyclerView;
+    List<GoodInfo> list = new ArrayList<>();
+    RecyclerAdapter adapter;
+    Button collectBtn;
+    ImageView settingBtn, personal_img;
+    TextView person_name, person_word, toast_collec;
+    TextView photoChoose, cancle;//popWindow中控件
     PopupWindow popupWindow;
     View popView;
     ImageLoader imgLoader;
@@ -87,10 +87,10 @@ public class PersonalFragment extends Fragment {
     RequestQueue queue;
 
     @Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-			Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
-        Bmob.initialize(getActivity(),"844b411fb7129f92886dad13103fde9f");
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // TODO Auto-generated method stub
+        Bmob.initialize(getActivity(), "844b411fb7129f92886dad13103fde9f");
         queue = Volley.newRequestQueue(getActivity());
         imgLoader = ImageLoader.getInstance();
         options = new DisplayImageOptions.Builder()
@@ -101,14 +101,14 @@ public class PersonalFragment extends Fragment {
         initPopWindow();
 
         recyclerView = (RecyclerView) view.findViewById(R.id.personListView);
-        recyclerView.setLayoutManager(new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL));
-        adapter = new RecyclerAdapter(getActivity(),list);
+        recyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
+        adapter = new RecyclerAdapter(getActivity(), list);
         recyclerView.setAdapter(adapter);
 
         person_name = (TextView) view.findViewById(R.id.person_name);
-		person_word = (TextView) view.findViewById(R.id.person_word);
+        person_word = (TextView) view.findViewById(R.id.person_word);
         toast_collec = (TextView) view.findViewById(R.id.toast_collec);
-        personal_img = (ImageView) view.findViewById(R.id.personal_img) ;
+        personal_img = (ImageView) view.findViewById(R.id.personal_img);
         personal_img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -117,16 +117,16 @@ public class PersonalFragment extends Fragment {
         });
         initUserInfo();
         settingBtn = (ImageView) view.findViewById(R.id.personal_setting);
-		settingBtn.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View view) {
-				Intent intent = new Intent(getActivity(),PersonalSetActivity.class);
-				startActivity(intent);
-			}
-		});
+        settingBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), PersonalSetActivity.class);
+                startActivity(intent);
+            }
+        });
         initData();
-		return view;
-	}
+        return view;
+    }
 
     private void initPopWindow() {
         photoChoose = (TextView) popView.findViewById(R.id.photoChoose);
@@ -137,14 +137,14 @@ public class PersonalFragment extends Fragment {
             public void onClick(View view) {
                 //android6.0 动态申请权限
                 if (Build.VERSION.SDK_INT >= 23) {
-                    if(ContextCompat.checkSelfPermission(getActivity(),
+                    if (ContextCompat.checkSelfPermission(getActivity(),
                             Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                            != PackageManager.PERMISSION_GRANTED){
+                            != PackageManager.PERMISSION_GRANTED) {
                         ActivityCompat.requestPermissions(getActivity(),
                                 new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
                                 2);
                         return;
-                    }else{
+                    } else {
                         //进入系统相册更换用户图片
                         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
                         intent.setType("image/*");
@@ -187,7 +187,7 @@ public class PersonalFragment extends Fragment {
                 personal_img.setImageBitmap(bmp);
                 popupWindow.dismiss();
                 backgroundAlpha(1);
-                String path = ImagePathUtils.getRealPathFromUri(getActivity(),uri);
+                String path = ImagePathUtils.getRealPathFromUri(getActivity(), uri);
                 doPostImageFile(path);
 
             } catch (FileNotFoundException e) {
@@ -198,14 +198,12 @@ public class PersonalFragment extends Fragment {
     }
 
 
-
-
     private void doPostImageFile(String path) {
         final BmobFile imageFile = new BmobFile(new File(path));
         imageFile.uploadblock(new UploadFileListener() {
             @Override
             public void done(BmobException e) {
-                if (e==null){
+                if (e == null) {
                     //String url = imageFile.getFileUrl();
                     //上传图片成功，更换用户头像
                     popupWindow.dismiss();
@@ -217,6 +215,7 @@ public class PersonalFragment extends Fragment {
 
         });
     }
+
     private void doSetUserImg(BmobFile imageFile) {
         UserInfo newUser = new UserInfo();
         UserInfo bmobUser = UserInfo.getCurrentUser();
@@ -228,12 +227,6 @@ public class PersonalFragment extends Fragment {
 
             }
         });
-    }
-
-    @Override
-    public void onAttachFragment(Fragment childFragment) {
-        super.onAttachFragment(childFragment);
-        initData();
     }
 
 
@@ -250,9 +243,9 @@ public class PersonalFragment extends Fragment {
     private void initUserInfo() {
         UserInfo userInfo = UserInfo.getCurrentUser();
         person_name.setText(userInfo.getUsername());
-        if (userInfo.getUserHeadImg()==null||userInfo.getUserHeadImg().getFileUrl().length()==0){
+        if (userInfo.getUserHeadImg() == null || userInfo.getUserHeadImg().getFileUrl().length() == 0) {
             personal_img.setBackgroundResource(R.mipmap.person_default_img);
-        }else{
+        } else {
             imgLoader.loadImage(userInfo.getUserHeadImg().getFileUrl(), new ImageLoadingListener() {
                 @Override
                 public void onLoadingStarted(String s, View view) {
@@ -276,10 +269,10 @@ public class PersonalFragment extends Fragment {
             });
         }
 
-        if (userInfo.getUserWord()==null||userInfo.getUserWord().equals("")){
+        if (userInfo.getUserWord() == null || userInfo.getUserWord().equals("")) {
             person_word.setText("我的美食宣言");
 
-        }else{
+        } else {
             person_word.setText(userInfo.getUserWord());
         }
     }
@@ -309,7 +302,7 @@ public class PersonalFragment extends Fragment {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> maps = new HashMap<String, String>();
-                maps.put("userId", UserInfo.getCurrentUser() + "");
+                maps.put("userId", UserInfo.getCurrentUser().getObjectId() + "");
                 return maps;
             }
         };
@@ -372,6 +365,7 @@ public class PersonalFragment extends Fragment {
             popupWindow.dismiss();
         }
     }
+
     /*
      *   设置窗体背景颜色变化
      */

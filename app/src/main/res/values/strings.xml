@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <string name="app_name">轻松购</string>
     <string name="userword">我的购物宣言</string>
     <string name="toast_userlike">快去收藏让你心动的商品吧！</string>

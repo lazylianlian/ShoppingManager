@@ -47,7 +47,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.viewHo
 
     @Override
     public viewHolder1 onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = inflater.inflate(R.layout.activity_shop_collect_item, parent);
+        View view = inflater.inflate(R.layout.activity_shop_collect_item, null);
         return new viewHolder1(view);
     }
 

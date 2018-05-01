@@ -209,7 +209,7 @@ public class GoodDetailActivity extends Activity implements View.OnClickListener
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> maps = new HashMap<String, String>();
                 maps.put("goodId", info.getGoodid() + "");
-                maps.put("userId", UserInfo.getCurrentUser() + "");
+                maps.put("userId", UserInfo.getCurrentUser().getObjectId() + "");
                 return maps;
             }
         };

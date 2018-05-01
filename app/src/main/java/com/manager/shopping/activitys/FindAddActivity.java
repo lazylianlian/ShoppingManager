@@ -1,12 +1,17 @@
 package com.manager.shopping.activitys;
 
+import android.Manifest;
 import android.content.ContentResolver;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.Build;
 import android.provider.MediaStore;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -55,11 +60,32 @@ public class FindAddActivity extends AppCompatActivity {
         pImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-                intent.setType("image/*");
-                intent.putExtra("crop", true);
-                intent.putExtra("return-data", true);
-                startActivityForResult(intent, 2);
+
+                //android6.0 动态申请权限
+                if (Build.VERSION.SDK_INT >= 23) {
+                    if (ContextCompat.checkSelfPermission(FindAddActivity.this,
+                            Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                            != PackageManager.PERMISSION_GRANTED) {
+                        ActivityCompat.requestPermissions(FindAddActivity.this,
+                                new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                                2);
+                        return;
+                    } else {
+                        //进入系统相册更换用户图片
+                        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                        intent.setType("image/*");
+                        intent.putExtra("crop", true);
+                        intent.putExtra("return-data", true);
+                        startActivityForResult(intent, 2);
+                    }
+                } else {
+                    //进入系统相册更换用户图片
+                    Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                    intent.setType("image/*");
+                    intent.putExtra("crop", true);
+                    intent.putExtra("return-data", true);
+                    startActivityForResult(intent, 2);
+                }
 
             }
         });

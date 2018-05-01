@@ -27,6 +27,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -37,6 +38,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.manager.shopping.R;
 import com.manager.shopping.activitys.GoodDetailActivity;
+import com.manager.shopping.activitys.LoginAndRegistActivity;
 import com.manager.shopping.activitys.PersonalSetActivity;
 import com.manager.shopping.activitys.ShopListActivity;
 import com.manager.shopping.adapter.RecyclerAdapter;
@@ -120,7 +122,12 @@ public class PersonalFragment extends Fragment {
         settingBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), PersonalSetActivity.class);
+                Intent intent;
+                if (UserInfo.getCurrentUser() == null){
+                    intent = new Intent(getActivity(), LoginAndRegistActivity.class);
+                }else {
+                    intent = new Intent(getActivity(), PersonalSetActivity.class);
+                }
                 startActivity(intent);
             }
         });
@@ -242,6 +249,10 @@ public class PersonalFragment extends Fragment {
      */
     private void initUserInfo() {
         UserInfo userInfo = UserInfo.getCurrentUser();
+        if (userInfo == null){
+            Toast.makeText(getActivity(), "您尚未登录，点击右上角设置去登录", Toast.LENGTH_SHORT).show();
+            return;
+        }
         person_name.setText(userInfo.getUsername());
         if (userInfo.getUserHeadImg() == null || userInfo.getUserHeadImg().getFileUrl().length() == 0) {
             personal_img.setBackgroundResource(R.mipmap.person_default_img);

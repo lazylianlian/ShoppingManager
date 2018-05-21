@@ -24,6 +24,7 @@ import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
@@ -41,6 +42,7 @@ import com.manager.shopping.activitys.GoodDetailActivity;
 import com.manager.shopping.activitys.LoginAndRegistActivity;
 import com.manager.shopping.activitys.PersonalSetActivity;
 import com.manager.shopping.activitys.ShopListActivity;
+import com.manager.shopping.activitys.ShopSaleActivity;
 import com.manager.shopping.adapter.RecyclerAdapter;
 import com.manager.shopping.bean.CateCollectionInfo;
 import com.manager.shopping.bean.GoodInfo;
@@ -74,7 +76,7 @@ import cn.bmob.v3.listener.UploadFileListener;
 
 import static android.app.Activity.RESULT_OK;
 
-public class PersonalFragment extends Fragment {
+public class PersonalFragment extends Fragment implements View.OnClickListener {
     RecyclerView recyclerView;
     List<GoodInfo> list = new ArrayList<>();
     RecyclerAdapter adapter;
@@ -87,6 +89,7 @@ public class PersonalFragment extends Fragment {
     ImageLoader imgLoader;
     DisplayImageOptions options;
     RequestQueue queue;
+    private LinearLayout saleLayout;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -117,6 +120,9 @@ public class PersonalFragment extends Fragment {
                 showPopWindow();
             }
         });
+
+        saleLayout = (LinearLayout) view.findViewById(R.id.mine_sale_layout);
+        saleLayout.setOnClickListener(this);
         initUserInfo();
         settingBtn = (ImageView) view.findViewById(R.id.personal_setting);
         settingBtn.setOnClickListener(new View.OnClickListener() {
@@ -384,5 +390,15 @@ public class PersonalFragment extends Fragment {
         WindowManager.LayoutParams layoutParams = getActivity().getWindow().getAttributes();
         layoutParams.alpha = bgAlpha;
         getActivity().getWindow().setAttributes(layoutParams);
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.mine_sale_layout:
+                Intent intent = new Intent(getActivity(),ShopSaleActivity.class);
+                startActivity(intent);
+                break;
+        }
     }
 }

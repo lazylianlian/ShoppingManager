@@ -97,6 +97,28 @@
             android:textSize="18sp" />
 
         <LinearLayout
+            android:id="@+id/mine_sale_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/toast_collec"
+            android:gravity="center_vertical"
+            android:paddingLeft="18dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/mine_sale" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:text="  我的出售"
+                android:textSize="15sp" />
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/toast_collec"
@@ -116,6 +138,7 @@
                 android:paddingTop="10dp"
                 android:text="  我的收藏"
                 android:textSize="15sp" />
+
         </LinearLayout>
 
 

@@ -68,7 +68,7 @@
                 android:layout_width="120dp"
                 android:layout_height="120dp"
                 android:scaleType="fitXY"
-                app:srcCompat="@mipmap/find_img" />
+                android:background="@mipmap/find_img" />
 
             <TextView
                 android:id="@+id/post_img_text"

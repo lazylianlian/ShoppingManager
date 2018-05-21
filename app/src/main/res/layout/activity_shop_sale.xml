@@ -126,7 +126,7 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:scaleType="fitXY"
-                app:srcCompat="@mipmap/find_img" />
+                android:background="@mipmap/find_img" />
 
             <TextView
                 android:id="@+id/post_img_text"
@@ -149,7 +149,8 @@
             android:gravity="center"
             android:padding="12dp"
             android:text="立即发布"
-            android:textColor="@color/black" />
+            android:textColor="@color/black"
+            android:onClick="onClick"/>
 
         <LinearLayout
             android:layout_width="match_parent"
